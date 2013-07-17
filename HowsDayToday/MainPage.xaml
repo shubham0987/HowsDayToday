@@ -1,0 +1,77 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="HowsDayToday.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait" Background="White" BorderBrush="White" xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI">
+	<phone:PhoneApplicationPage.Resources>
+		<Storyboard x:Name="Appear">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TodayRatingScrollViewer">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<QuinticEase EasingMode="EaseInOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="Disappear">
+			<DoubleAnimation Duration="0:0:0.8" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TodayRatingScrollViewer" d:IsOptimized="True"/>
+		</Storyboard>
+	</phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="PageTitle" Text="how's day today" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="60" FontFamily="SketchFlow Print" Foreground="#FF3F3F3F"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        	<StackPanel Orientation="Vertical" d:LayoutOverrides="VerticalAlignment">
+        		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name" FontFamily="SketchFlow Print" FontSize="24" Foreground="#FF1D1D1D"/>
+        		<TextBox TextWrapping="Wrap" Foreground="#FF2D2D2D" Background="#BFADADAD" BorderBrush="#BF565656" Name="name" />
+        		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Birthday" FontFamily="SketchFlow Print" FontSize="24" Foreground="#FF1D1D1D"/>
+        		<TextBox TextWrapping="Wrap" Foreground="#FF2D2D2D" Background="#BFADADAD" BorderBrush="#BF565656" Name="birthdayTB" />
+				<ScrollViewer x:Name="TodayRatingScrollViewer" Margin="-1,0,1,0" Height="334">
+	        		<StackPanel Margin="0,25,0,0" Orientation="Vertical">
+	        			<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Today's ratings" FontSize="30" FontFamily="SketchFlow Print" Foreground="#FF1D1D1D"/>
+	        			<TextBlock TextWrapping="Wrap" Text="Social" Foreground="#FF1D1D1D" FontFamily="SketchFlow Print" FontSize="21.333" Margin="0,16,0,0"/>
+	        			<ProgressBar x:Name="SocialPB" Height="11" Width="444" Background="#FF9B9B9B" Foreground="#FF707070" BorderBrush="#FF0A0A0A" />
+	        			<TextBlock TextWrapping="Wrap" Text="Relationships" Foreground="#FF1D1D1D" FontFamily="SketchFlow Print" FontSize="21.333" Margin="0,10,0,0"/>
+						<ProgressBar x:Name="RelationshipPB" Height="11" Width="444" Background="#FF9B9B9B" Foreground="#FF707070" BorderBrush="#FF0A0A0A"/>
+	        			<TextBlock TextWrapping="Wrap" Text="Work" FontFamily="SketchFlow Print" FontSize="21.333" Foreground="#FF1D1D1D" Margin="0,10,0,0"/>
+						<ProgressBar x:Name="WorkPB" Height="11" Width="444" Background="#FF9B9B9B" Foreground="#FF707070" BorderBrush="#FF0A0A0A"/>
+	        			<TextBlock TextWrapping="Wrap" Text="Finance" FontFamily="SketchFlow Print" FontSize="21.333" Foreground="#FF1D1D1D" Margin="0,10,0,0"/>
+						<ProgressBar x:Name="financePB" Height="11" Width="444" Background="#FF9B9B9B" Foreground="#FF707070" BorderBrush="#FF0A0A0A"/>
+	        			<TextBlock TextWrapping="Wrap" Text="Personal" FontFamily="SketchFlow Print" FontSize="21.333" Foreground="#FF1D1D1D" Margin="0,10,0,0"/>
+						<ProgressBar x:Name="PersonalPB" Height="11" Width="444" Background="#FF9B9B9B" Foreground="#FF707070" BorderBrush="#FF0A0A0A"/>
+	        			<TextBlock TextWrapping="Wrap" Text="Entertainment" FontFamily="SketchFlow Print" FontSize="21.333" Foreground="#FF1D1D1D" Margin="0,10,0,0"/>
+						<ProgressBar x:Name="EntertainmentPB" Height="11" Width="444" Background="#FF9B9B9B" Foreground="#FF707070" BorderBrush="#FF0A0A0A"/>
+	                </StackPanel>
+				</ScrollViewer>
+            </StackPanel>
+        </Grid>
+    </Grid>
+ 
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/icons/appbar.check.rest.png" Text="match" Click="ApplicationBarIconButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
